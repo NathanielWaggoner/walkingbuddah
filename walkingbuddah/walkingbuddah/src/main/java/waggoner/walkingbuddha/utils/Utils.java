@@ -1,10 +1,16 @@
 package waggoner.walkingbuddha.utils;
 
 import android.os.Environment;
+import com.google.gson.Gson;
+import org.json.JSONException;
+import org.json.JSONObject;
 import waggoner.walkingbuddha.domain.Prayer;
 import waggoner.walkingbuddha.domain.Stupa;
 
-import java.io.File;
+import java.io.*;
+import java.nio.MappedByteBuffer;
+import java.nio.channels.FileChannel;
+import java.nio.charset.Charset;
 import java.util.List;
 
 /**
@@ -29,19 +35,20 @@ public class Utils {
 	/** Parse a Stupa out of a file.
 	 * @return the stupa to load.
 	 */
-	public static Stupa loadStupaFromFile(String path) {
-		File f = loadFileFromSdCard(path);
-		Stupa s = new Stupa();
-		return s;
+	public static Stupa loadStupaFromFile(String path,Gson gson) throws FileNotFoundException {
+		return gson.fromJson(getReaderForFile(path),Stupa.class);
 	}
 
+	public static Reader getReaderForFile(String path) throws FileNotFoundException {
+		File f = loadFileFromSdCard(path);
+		Gson gson = new Gson();
+		return new InputStreamReader(new FileInputStream(f));
+	}
 	/**Loads a prayer form a file.
 	 * @return the prayer to load
 	 */
-	public static Prayer loadPrayerFromFile(String path) {
-		File f = loadFileFromSdCard(path);
-		Prayer p = new Prayer();
-		return p;
+	public static Prayer loadPrayerFromFile(String path,Gson gson) throws FileNotFoundException {
+		return gson.fromJson(getReaderForFile(path),Prayer.class);
 	}
 
 	/** Get a list of all files in the prayers
