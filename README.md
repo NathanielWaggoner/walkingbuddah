@@ -14,7 +14,6 @@ Goals:
    Mantras:  Provide a set of prayers to users which allows them to recite
     traditional buddhist prayers.  Display these during the cirucumambulation to allow interactive use... Read alloud for deaf users?
 
-
    Extensibility:  Allow users to Add their own Stupas and or Prayers to the application
 
    Add Support:  Put google adds in unobtrusive locations to generate revenue to support further dev, potentially donate procedes to worth groups.
@@ -56,7 +55,8 @@ OBJECT MODELS:
 
    Stupa:
 	NAME:string (<40char??) // we do this just for display purposes... might not really enforce
-        LOCATION: (Lat,Lng) // google latlng format    
+        LAT: // google latlng format
+	LNG:    
 	TYPE: string // pic or mov
 	DESC: string (<255 char??) // tell us about yourself stupa
    Prayer:
