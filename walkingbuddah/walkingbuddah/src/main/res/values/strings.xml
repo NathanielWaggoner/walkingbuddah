@@ -4,5 +4,7 @@
     <string name="app_name">WalkingBuddha</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="drawer_open">Opened Drawer</string>
+    <string name="drawer_closed">Closed Drawer</string>
 
 </resources>
