@@ -66,7 +66,6 @@ OBJECT MODELS:
 	TEXT_PHON_FONT: string // font used for this
 	TEXT_NON_ENG: string //Got a special encoding?  Like sanskrit?  May want to all custom fonts even
 	TEXT_NON_ENG_FONT: string // font used for this
-   	FONT: string.tff // name of font file you want to use for your non engrish version/s
 
 
 UI Description:
