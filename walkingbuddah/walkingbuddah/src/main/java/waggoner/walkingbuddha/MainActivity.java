@@ -1,5 +1,7 @@
 package waggoner.walkingbuddha;
 
+import  android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -12,6 +14,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import waggoner.walkingbuddha.fragments.*;
 
 
 public class MainActivity extends ActionBarActivity  implements ListView.OnItemClickListener {
@@ -19,10 +22,10 @@ public class MainActivity extends ActionBarActivity  implements ListView.OnItemC
 
 	/**..Nice way to handle fragment id's and such for swapping, nice and simple..**/
 	public static enum BuddhaFrag {
-		Splash("Splash",R.drawable.pretty_stupa,0),
+		Splash("Walking Buddha",R.drawable.pretty_stupa,0),
 		Prayer("Prayers",R.drawable.hands_in_prayer,1),
-		Stupa("Stupas",R.id.icon,2),
-		Action("Action",R.id.icon,3);
+		Stupa("Stupas",R.drawable.pretty_stupa,2),
+		Action("Action",R.drawable.ic_launcher,3);
 		private final String name;
 		private final int icon;
 		public final int loc;
@@ -122,5 +125,28 @@ public class MainActivity extends ActionBarActivity  implements ListView.OnItemC
 	}
 
 	private void instantiateAndShowCurFrag() {
+		Fragment frag = null;
+		switch(curFrag) {
+			case Splash:
+				frag = new SplashFragment();
+				break;
+			case Prayer:
+				frag = new PrayerFragment();
+				break;
+			case Stupa:
+				frag = new StupaFragment();
+				break;
+			case Action:
+				frag = new ActionFragment();
+				break;
+		}
+
+		// Insert the fragment by replacing any existing fragment
+		((BuddhaBaseFragment)frag).setActionBar(bar);
+		FragmentManager fragmentManager = getSupportFragmentManager();
+
+		fragmentManager.beginTransaction()
+				.replace(R.id.fragment_holder, frag)
+				.commit();
 	}
 }
