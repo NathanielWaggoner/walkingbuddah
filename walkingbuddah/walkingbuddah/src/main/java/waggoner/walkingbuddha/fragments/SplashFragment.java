@@ -23,10 +23,7 @@ public class SplashFragment extends BuddhaBaseFragment {
 							 Bundle savedInstanceState) {
 		//setHasOptionsMenu(true);
 		page = super.onCreateView( inflater, container,savedInstanceState);
-		setUpAssets();
 		return page;
 	}
-	private void setUpAssets() {
-		Utils.copyFileOrDir(getActivity(), "WalkingBuddha");
-	}
+
 }

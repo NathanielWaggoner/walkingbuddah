@@ -1,6 +1,7 @@
 package waggoner.walkingbuddha.fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,9 @@ public class StupaFragment extends BuddhaBaseFragment {
 	public StupaFragment() {
 		super(R.layout.stupa_view_layout);
 		stupas = Utils.getStupas();
+		for(Stupa s: stupas) {
+			Log.e("Loaded a Stupa",s.getDesc() + s.getLat() + s.getLon() + s.getName() + s.getType() + s.getName());
+		}
 	}
 
 	@Override

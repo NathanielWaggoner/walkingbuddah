@@ -15,11 +15,13 @@ import java.util.ArrayList;
  * Created by transapps on 7/7/14.
  */
 public class Utils {
+	private static final String TAG = Utils.class.getName();
 	public static String SD_CARD_LOC = Environment.getExternalStorageDirectory().getAbsolutePath();
-	public static String WALKING_BUDDHA_LOC = SD_CARD_LOC+File.separator+"WalkingBuddha";
-	public static String STUPAS = WALKING_BUDDHA_LOC+File.separator+ "/stupas";
-	public static String PRAYERS = WALKING_BUDDHA_LOC+File.separator+ "/prayers";
-	public static String FONTS = WALKING_BUDDHA_LOC+File.separator+ "/fonts";
+	public static String WALKING_BUDDHA = "WalkingBuddha";
+	public static String WALKING_BUDDHA_LOC = SD_CARD_LOC+File.separator+WALKING_BUDDHA;
+	public static String STUPAS = WALKING_BUDDHA_LOC+File.separator+ "stupas";
+	public static String PRAYERS = WALKING_BUDDHA_LOC+File.separator+ "prayers";
+	public static String FONTS = WALKING_BUDDHA_LOC+File.separator+ "fonts";
 	/** Open a FILE from somewhere on the SD Card
 	 *
 	 * @param path the file to load, not iincluding any of the SD card info (just STUPAS/stupa_name or PRAYER/prayer_name
@@ -86,10 +88,16 @@ public class Utils {
 		Gson gson = new Gson();
 		ArrayList<Prayer> prayers = new ArrayList<Prayer>();
 		for(String s:getListOfPrayers()) {
-			try {
-				prayers.add(loadPrayerFromFile(s,gson));
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
+			String path = getJsonFileFromPathName(s);
+			File f = new File(path);
+			if(f.exists()) {
+				try {
+					prayers.add(loadPrayerFromFile(path, gson));
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				}
+			} else {
+				Log.e(TAG,"Found file "+s+" but it is not a .json file.");
 			}
 		}
 		return prayers.toArray(new Prayer[prayers.size()]);
@@ -97,15 +105,23 @@ public class Utils {
 	public static Stupa[] getStupas() {
 		Gson gson = new Gson();
 		ArrayList<Stupa> stupas = new ArrayList<Stupa>();
-		for(String s:getListOfPrayers()) {
+		for(String s:getListOfStupas()) {
+			String path = getJsonFileFromPathName(s);
 			try {
-				stupas.add(loadStupaFromFile(s,gson));
+				stupas.add(loadStupaFromFile(path,gson));
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
 		}
 		return stupas.toArray(new Stupa[stupas.size()]);
 	}
+
+	private static String getJsonFileFromPathName(String s) {
+		String idStr = s.substring(s.lastIndexOf('/') + 1);
+		return s+File.separator+idStr+".json";
+
+	}
+
 	/**
 	 * Copy the asset at the specified path to this app's data directory. If the
 	 * asset is a directory, its contents are also copied.

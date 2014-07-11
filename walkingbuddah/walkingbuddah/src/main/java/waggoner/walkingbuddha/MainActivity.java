@@ -97,7 +97,7 @@ public class MainActivity extends ActionBarActivity  implements ListView.OnItemC
 	}
 
 	private void setUpAssets() {
-//			Utils.copyAsset(this,"WalkingBuddha");
+		Utils.copyFileOrDir(this,Utils.WALKING_BUDDHA);
 	}
 
 	public void setActionBarIcon() {
