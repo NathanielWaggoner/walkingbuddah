@@ -59,6 +59,7 @@ OBJECT MODELS:
 	LNG:    
 	TYPE: string // pic or mov
 	DESC: string (<255 char??) // tell us about yourself stupa
+	IMAGES: string[], // list of images in order
    Prayer:
 	NAME:string (<40char??) // we do this just for display purposes... might not really enforce
 	TEXT_ENG: string //english version

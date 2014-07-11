@@ -1,0 +1,9 @@
+{
+    "name":"Test Stupa",
+    "lat":"49.9999",
+    "lon":"49.999",
+    "type":"pic",
+    "desc":"A stupa for testing our json library etc...",
+    "images":["test1","test2"]
+
+}

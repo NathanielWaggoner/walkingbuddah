@@ -15,6 +15,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import waggoner.walkingbuddha.fragments.*;
+import waggoner.walkingbuddha.utils.Utils;
+
+import java.io.File;
 
 
 public class MainActivity extends ActionBarActivity  implements ListView.OnItemClickListener {
@@ -56,6 +59,7 @@ public class MainActivity extends ActionBarActivity  implements ListView.OnItemC
 		setContentView(R.layout.activity_main);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		getSupportActionBar().setHomeButtonEnabled(true);
+		setUpAssets();
 		bar = getSupportActionBar();
 		curFrag = BuddhaFrag.Splash;
 		mDrawerLayout =(DrawerLayout) findViewById(R.id.drawer_layout);
@@ -91,6 +95,11 @@ public class MainActivity extends ActionBarActivity  implements ListView.OnItemC
 		setActionBarIcon();
 
 	}
+
+	private void setUpAssets() {
+//			Utils.copyAsset(this,"WalkingBuddha");
+	}
+
 	public void setActionBarIcon() {
 		getSupportActionBar().setIcon(curFrag.getIcon());
 	}

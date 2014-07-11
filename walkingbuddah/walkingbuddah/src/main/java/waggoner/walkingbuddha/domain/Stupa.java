@@ -6,16 +6,24 @@ import com.google.gson.annotations.SerializedName;
  * Created by transapps on 7/7/14.
  */
 public class Stupa {
+
 	@SerializedName("name")
 	private String name;
+
 	@SerializedName("lat")
 	private String lat;
+
 	@SerializedName("lon")
 	private String lon;
+
 	@SerializedName("type")
 	private String type;
+
 	@SerializedName("desc")
 	private String desc;
+
+	@SerializedName("images")
+	private String[] images;
 
 	public Stupa() {}
 
@@ -60,4 +68,11 @@ public class Stupa {
 		return desc;
 	}
 
+	public String[] getImages() {
+		return images;
+	}
+
+	public void setImages(String[] images) {
+		this.images = images;
+	}
 }
