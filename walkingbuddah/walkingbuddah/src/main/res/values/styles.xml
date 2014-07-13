@@ -5,4 +5,8 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="default_background_color" >
+        <item name="android:background">#EECBAD</item>
+    </style>
+
 </resources>

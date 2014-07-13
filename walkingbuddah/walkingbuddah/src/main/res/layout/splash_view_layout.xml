@@ -3,10 +3,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
+              style="@style/default_background_color"
+
               android:layout_height="match_parent">
     <ImageView
             android:id="@+id/splash_image_holder"
-            android:src="@drawable/pretty_stupa"
+            android:src="@drawable/standingbuddha"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent">
 

@@ -25,7 +25,7 @@ public class MainActivity extends ActionBarActivity  implements ListView.OnItemC
 
 	/**..Nice way to handle fragment id's and such for swapping, nice and simple..**/
 	public static enum BuddhaFrag {
-		Splash("Walking Buddha",R.drawable.pretty_stupa,0),
+		Splash("Walking Buddha",R.drawable.standingbuddha,0),
 		Prayer("Prayers",R.drawable.hands_in_prayer,1),
 		Stupa("Stupas",R.drawable.pretty_stupa,2),
 		Action("Action",R.drawable.ic_launcher,3);
