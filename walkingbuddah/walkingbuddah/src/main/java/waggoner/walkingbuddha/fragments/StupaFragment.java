@@ -19,6 +19,7 @@ import java.util.List;
  * Created by transapps on 7/8/14.
  */
 public class StupaFragment extends BuddhaBaseFragment {
+	private static final String TAG = "STUPA FRAGMENT";
 	Stupa[] stupas;
 	List<String> stupaNames;
 	Stupa activeStupa;
@@ -51,9 +52,10 @@ public class StupaFragment extends BuddhaBaseFragment {
 		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getActivity(),
 				android.R.layout.simple_spinner_item, stupaNames);
 		selectionSpinner.setAdapter(dataAdapter);
-		selectionSpinner.setSelection(0);
+		if(stupaNames.size()>0 && stupaNames.get(0)!=null) {
+			selectionSpinner.setSelection(0);
+		}
 		stupaImage = (ImageView)page.findViewById(R.id.stupa_image_view);
-
 		descriptionView = (TextView) page.findViewById(R.id.stupa_description_view);
 		return page;
 	}
@@ -64,20 +66,35 @@ public class StupaFragment extends BuddhaBaseFragment {
 	}
 
 	/**Set the UI to display the basic info for the current stupa
-	 *
+	 * We are going to be EXTRA craful anywhere we show user created content, since they might have made mistakes
 	 */
 	private void updateView() {
 		if(activeStupa!=null) {
-			descriptionView.setText(activeStupa.getDesc());
-			Bitmap bitmap = BitmapFactory.decodeFile(Utils.getImagePath(activeStupa.getFilepath(), activeStupa.getImages()[0]));
-			stupaImage.setImageBitmap(bitmap);
+			if(activeStupa.getDesc()!=null) {
+				descriptionView.setText(activeStupa.getDesc());
+			} else {
+				Utils.showToast(getActivity(), "Tried to laod Stupa with no description");
+				Log.e(TAG,"Failed to find description for Stupa: "+activeStupa.getName() );
+			}
+			if(activeStupa.getImages()!=null && activeStupa.getImages()[0]!=null && activeStupa.getFilepath()!=null) {
+				Bitmap bitmap = BitmapFactory.decodeFile(Utils.getImagePath(activeStupa.getFilepath(), activeStupa.getImages()[0]));
+				stupaImage.setImageBitmap(bitmap);
+			}else {
+				Utils.showToast(getActivity(), "Tried to laod Stupa with no associate images");
+				Log.e(TAG,"Failed to find description for Stupa: "+activeStupa.getName() );
+			}
+
 		}
 	};
 
 	public List<String> getStupaNames() {
 		List<String> stupaNames = new ArrayList<String>();
 		for(Stupa s: stupas) {
-			stupaNames.add(s.getName());
+			if(s.getName()!=null) {
+				stupaNames.add(s.getName());
+			} else {
+				Log.e(TAG,"Failed to find name for Stupa, not showing in list.");
+			}
 		}
 		return stupaNames;
 	}

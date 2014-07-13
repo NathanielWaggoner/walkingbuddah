@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.os.Environment;
 import android.util.Log;
+import android.widget.Toast;
 import com.google.gson.Gson;
 import waggoner.walkingbuddha.domain.Prayer;
 import waggoner.walkingbuddha.domain.Stupa;
@@ -180,69 +181,7 @@ public class Utils {
 	public static String getImagePath(String filepath, String imagename) {
 		return STUPAS+File.separator+filepath+File.separator+STUPA_IMAGES+File.separator+imagename;
 	}
-
-//	public static void copyAssets(Context ctx) {
-//		setUpFiles();
-//		AssetManager assetManager = ctx.getAssets();
-//		copyFilesFromStupas(assetManager);
-//		copyFilesFromPrayes(assetManager);
-//		copyFilesFromFonts(assetManager);
-//	}
-//
-//	private static void copyFilesFromFonts(AssetManager am) {
-//		copyFromAssetsTo("WalkingBuddha.fonts",FONTS,am);
-//
-//	}
-//
-//	private static void copyFilesFromPrayes(AssetManager am) {
-//		copyFromAssetsTo("WalkingBuddha.prayers",PRAYERS,am);
-//	}
-//
-//	private static void copyFilesFromStupas(AssetManager am) {
-//		copyFromAssetsTo("WalkingBuddha.stupas",STUPAS,am);
-//	}
-//
-//	private static void copyFromAssetsTo(String from, String to, AssetManager assetManager) {
-//		String[] files = null;
-//		try {
-//			files = assetManager.list(from);
-//		} catch (IOException e) {
-//			Log.e("tag", "Failed to get asset file list.", e);
-//		}
-//		for(String filename : files) {
-//			InputStream in = null;
-//			OutputStream out = null;
-//			try {
-//				in = assetManager.open(filename);
-//				File outFile = new File(WALKING_BUDDHA_LOC, filename);
-//				out = new FileOutputStream(outFile);
-//				copyFile(in, out);
-//				in.close();
-//				in = null;
-//				out.flush();
-//				out.close();
-//				out = null;
-//			} catch(IOException e) {
-//				Log.e("tag", "Failed to copy asset file: " + filename, e);
-//			}
-//		}
-//	}
-//	private static void setUpFiles() {
-//		File f = new File(WALKING_BUDDHA_LOC);
-//		f.mkdirs();
-//		f = new File(STUPAS);
-//		f.mkdirs();
-//		f = new File(PRAYERS);
-//		f.mkdirs();
-//
-//	}
-//
-//	private static void copyFile(InputStream in, OutputStream out) throws IOException {
-//		byte[] buffer = new byte[1024];
-//		int read;
-//		while((read = in.read(buffer)) != -1){
-//			out.write(buffer, 0, read);
-//		}
-//	}
-
+	public static void showToast(Context ctx, String toShow) {
+		Toast.makeText(ctx, toShow, Toast.LENGTH_LONG).show();
+	}
 }
