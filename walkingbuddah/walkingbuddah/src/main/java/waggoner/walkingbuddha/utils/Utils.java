@@ -22,6 +22,7 @@ public class Utils {
 	public static String STUPAS = WALKING_BUDDHA_LOC+File.separator+ "stupas";
 	public static String PRAYERS = WALKING_BUDDHA_LOC+File.separator+ "prayers";
 	public static String FONTS = WALKING_BUDDHA_LOC+File.separator+ "fonts";
+	public static String STUPA_IMAGES = "stupaimages";
 	/** Open a FILE from somewhere on the SD Card
 	 *
 	 * @param path the file to load, not iincluding any of the SD card info (just STUPAS/stupa_name or PRAYER/prayer_name
@@ -174,6 +175,10 @@ public class Utils {
 			Log.e("tag", e.getMessage());
 		}
 
+	}
+
+	public static String getImagePath(String filepath, String imagename) {
+		return STUPAS+File.separator+filepath+File.separator+STUPA_IMAGES+File.separator+imagename;
 	}
 
 //	public static void copyAssets(Context ctx) {

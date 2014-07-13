@@ -4,6 +4,7 @@
     "lon":"49.999",
     "type":"pic",
     "desc":"A stupa for testing our json library etc...",
-    "images":["test1","test2"]
+    "filepath":"teststupa",
+    "images":["test_stupa1.png"]
 
 }

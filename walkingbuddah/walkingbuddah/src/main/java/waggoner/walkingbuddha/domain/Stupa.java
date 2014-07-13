@@ -25,8 +25,10 @@ public class Stupa {
 	@SerializedName("images")
 	private String[] images;
 
-	public Stupa() {}
+	@SerializedName("filepath")
+	private String filepath;
 
+	public Stupa() {}
 
 	public String getName() {
 		return name;
@@ -35,6 +37,7 @@ public class Stupa {
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public void setLat(String lat) {
 		this.lat = lat;
 	}
@@ -50,7 +53,6 @@ public class Stupa {
 	public void setDesc(String desc) {
 		this.desc = desc;
 	}
-
 
 	public String getLat() {
 		return lat;
@@ -75,4 +77,8 @@ public class Stupa {
 	public void setImages(String[] images) {
 		this.images = images;
 	}
+
+	public String getFilepath() {return filepath;}
+
+	public void setFilepath(String filepath) {this.filepath = filepath;}
 }
